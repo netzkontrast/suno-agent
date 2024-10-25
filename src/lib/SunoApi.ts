@@ -89,7 +89,8 @@ class SunoApi {
     const getSessionUrl = `${SunoApi.CLERK_BASE_URL}/v1/client?_clerk_js_version=${this.clerkVersion}`; 
     // Get session ID
     const sessionResponse = await this.client.get(getSessionUrl);
-  
+    console.log(getSessionUrl)
+
     if (!sessionResponse?.data?.response?.['last_active_session_id']) {
       throw new Error("Failed to get session id, you may need to update the SUNO_COOKIE");
     }
