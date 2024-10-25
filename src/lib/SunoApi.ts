@@ -429,5 +429,6 @@ const newSunoApi = async (cookie: string) => {
 if (!process.env.SUNO_COOKIE) {
   console.log("Environment does not contain SUNO_COOKIE.", process.env)
 }
+console.log("SUNO_COOKIE.", process.env.SUNO_COOKIE)
 
 export const sunoApi = newSunoApi(process.env.SUNO_COOKIE || '');
