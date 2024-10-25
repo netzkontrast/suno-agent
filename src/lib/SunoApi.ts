@@ -49,6 +49,8 @@ class SunoApi {
         'Cookie': cookie
       }
     }))
+    console.log(this.client),
+    console.log(cookie),
     this.client.interceptors.request.use((config) => {
       if (this.currentToken) { // Use the current token status
         config.headers['Authorization'] = `Bearer ${this.currentToken}`;
@@ -87,9 +89,11 @@ class SunoApi {
     const getSessionUrl = `${SunoApi.CLERK_BASE_URL}/v1/client?_clerk_js_version=${this.clerkVersion}`; 
     // Get session ID
     const sessionResponse = await this.client.get(getSessionUrl);
+  
     if (!sessionResponse?.data?.response?.['last_active_session_id']) {
       throw new Error("Failed to get session id, you may need to update the SUNO_COOKIE");
     }
+    console.log(sessionResponse.data)
     // Save session ID for later use
     this.sid = sessionResponse.data.response['last_active_session_id'];
   }
